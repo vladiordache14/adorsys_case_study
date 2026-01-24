@@ -1,0 +1,13 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    # This helps Hibernate wait for Flyway
+    properties:
+      hibernate:
+        default_schema: public
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+    # Tells Flyway where your V1__init.sql is
+    locations: classpath:db/migration
