@@ -28,12 +28,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
-        "401":
-          description: Unauthorized (Missing or invalid token)
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorResponse"
+        
         "404":
           description: Employee not found
           content:
@@ -60,7 +55,7 @@ paths:
             schema:
               $ref: '#/components/schemas/EmployeeRequest'
       responses:
-        "200":
+        "201":
           description: OK
           content:
             application/json:
@@ -72,12 +67,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
-        "401":
-          description: Unauthorized (Missing or invalid token)
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorResponse"
+        
         "404":
           description: Employee not found
           content:
@@ -124,12 +114,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
-        "401":
-          description: Unauthorized (Missing or invalid token)
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorResponse"
+        
         "404":
           description: Employee not found
           content:
@@ -155,7 +140,7 @@ paths:
           schema:
             type: string
       responses:
-        "200":
+        "204":
           description: OK
         "400":
           description: Invalid input (e.g., validation error)
@@ -163,12 +148,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
-        "401":
-          description: Unauthorized (Missing or invalid token)
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorResponse"
+        
         "404":
           description: Employee not found
           content:
@@ -207,12 +187,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
-        "401":
-          description: Unauthorized (Missing or invalid token)
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorResponse"
+        
         "404":
           description: Employee not found
           content:

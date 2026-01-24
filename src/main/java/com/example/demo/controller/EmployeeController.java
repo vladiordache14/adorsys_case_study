@@ -8,7 +8,9 @@ import com.example.demo.service.EmployeeService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -18,13 +20,18 @@ public class EmployeeController implements EmployeeApi {
     private final EmployeeService employeeService;
     @Override
     public ResponseEntity<EmployeeResponse> createEmployee(EmployeeRequest employeeRequest) {
-        return ResponseEntity.ok(employeeService.createEmployee(employeeRequest));
+        var savedEmployee = employeeService.createEmployee(employeeRequest);
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(savedEmployee.getId())
+                .toUri();
+        return ResponseEntity.created(location).body(savedEmployee);
     }
 
     @Override
     public ResponseEntity<Void> deleteEmployee(String employeeId) {
         employeeService.deleteEmployee(employeeId);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.noContent().build();
     }
 
     @Override
