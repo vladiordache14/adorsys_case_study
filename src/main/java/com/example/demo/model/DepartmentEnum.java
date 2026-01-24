@@ -1,7 +1,7 @@
 package com.example.demo.model;
 
 public enum DepartmentEnum {
-    SOFWARE_DEVELOPMENT("Softwareentwicklung"),
+    SOFTWARE_DEVELOPMENT("Softwareentwicklung"),
     PROJECT_MANAGEMENT("Projektmanagement"),
     HUMAN_RESOUCES("Human Resources");
 
