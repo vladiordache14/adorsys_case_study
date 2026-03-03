@@ -6,6 +6,9 @@ info:
 servers:
   - url: http://localhost:8080
 
+security:
+  - AuthorizationHeader: []
+
 paths:
   /employee:
     get:
@@ -203,6 +206,12 @@ paths:
 
 
 components:
+  securitySchemes:
+    AuthorizationHeader:
+      type: apiKey
+      in: header
+      name: Authorization
+
   schemas:
     EmployeeRequest:
       type: object

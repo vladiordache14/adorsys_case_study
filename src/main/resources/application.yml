@@ -11,3 +11,7 @@ spring:
     baseline-on-migrate: true
     # Tells Flyway where your V1__init.sql is
     locations: classpath:db/migration
+
+auth:
+  jwt:
+    secret: "bGF0ZXNhbGVzaW5nbW9yZWNhcmVmdWxseXRyaWFuZ2xlZXF1aXBtZW50eW91dGhza2k"
