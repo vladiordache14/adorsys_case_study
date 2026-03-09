@@ -12,9 +12,9 @@ paths:
       summary: log in user
       operationId: login
       tags:
-        - User
+        - Authentication
       requestBody:
-        description: Employee data to save
+        description: Username And Password
         required: true
         content:
           application/json:
@@ -27,25 +27,43 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/LoginResponse"
-        "400":
-          description: Invalid input (e.g., validation error)
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorResponse"
+        '401':
+          description: Invalid email or password
 
-        "404":
-          description: Employee not found
+  /auth/refresh:
+    post:
+      summary: Refresh Token
+      operationId: refresh
+      tags:
+        - Authentication
+      requestBody:
+        description: Employee data to save
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RefreshRequest'
+      responses:
+        "200":
+          description: OK
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ErrorResponse"
-        "500":
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorResponse"
+                $ref: "#/components/schemas/LoginResponse"
+        '401':
+          description: Refresh token invalid or expired
+
+  /auth/logout:
+    post:
+      tags:
+        - Authentication
+      summary: Logout and revoke tokens
+      operationId: logout
+      responses:
+        '204':
+          description: Successfully logged out
+        '401':
+          description: Invalid or missing token
 
 components:
   schemas:
@@ -57,10 +75,18 @@ components:
         password:
           type: string
 
+    RefreshRequest:
+      type: object
+      properties:
+        refreshToken:
+          type: string
+
     LoginResponse:
       type: object
       properties:
-        token:
+        accessToken:
+          type: string
+        refreshToken:
           type: string
         email:
           type: string
@@ -68,6 +94,7 @@ components:
           type: array
           items:
             type: string
+
     ErrorResponse:
       type: object
       properties:

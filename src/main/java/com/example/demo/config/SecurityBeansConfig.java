@@ -18,7 +18,7 @@ public class SecurityBeansConfig {
                 .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(
-                                "/auth/login",
+                                "/auth/login", "/auth/refresh", "/auth/logout",
                                 "/swagger-ui/**",
                                 "/swagger-ui.html",
                                 "/v3/api-docs/**",
@@ -31,6 +31,7 @@ public class SecurityBeansConfig {
                 .formLogin(AbstractHttpConfigurer::disable);    // ← disables the login page
         return http.build();
     }
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
